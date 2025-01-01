@@ -32,7 +32,18 @@ body{
     justify-content: center;
     margin-bottom: 100px;
   }
-  .card{
+  .playerCard{
+    min-width: 120px;
+    height: 200px;
+    display: inline-block;
+    overflow: wrap;
+    margin: 0 50px;
+    border: solid #141c3a 2px;
+    box-shadow: 2px 5px;
+    background-color: white;
+    color: #141c3a;
+  }
+  .dealerCard{
     min-width: 120px;
     height: 200px;
     display: inline-block;
