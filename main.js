@@ -73,20 +73,47 @@ document.getElementById("playersCard2").innerHTML = getRandomCardVal();
 document.getElementById("dealersCard1").innerHTML = getRandomCardVal();
 
 // initializes score of player and dealer
-updateScores(players_hand);
-updateScores(dealers_hand);
+updatePlayerScores();
+updateDealerScores();
 
 // key used to create id for new player cards
 let playerCardId = 3
 
-// anonymous event handler property and function for the hit button
-hit.onclick = function(event) {
+// function for event handler for the hit button
+function handleClickHit(event) {
+    // create new card html element
     let newCard = document.createElement("section");
     let id = "playersCard" + playerCardId;
     playerCardId += 1;
     newCard.setAttribute("id", id);
     newCard.setAttribute("class", "playerCard");
+    // assign card val
     newCard.innerHTML = getRandomCardVal();
     document.getElementById("players_hand").appendChild(newCard);
-    updateScores("players_hand");
+    updatePlayerScores();
+    // check if player busted
+    if (playerHardScore > 21) {
+        document.getElementById("outcome").innerHTML = "BUST";
+        endGame();
+    }
+    if (playerHardScore == 21 || playerSoftScore == 21) {
+        document.getElementById("outcome").innerHTML = "BLACK JACK";
+        endGame();
+    }
+}
+
+// add event listener on hit button
+hit.addEventListener("click", handleClickHit);
+
+//function for event handler for the stay button
+
+// add event listener on the stay button
+
+//function for event handler for the play again button
+
+// function that puts game into end of game stage
+function endGame() {
+    document.getElementById("play_again").style.display = "inline-block";
+    document.getElementById("outcome").style.display = "block";
+    hit.removeEventListener("click", handleClickHit);
 }
